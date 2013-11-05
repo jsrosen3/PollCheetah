@@ -2,9 +2,15 @@ window.PollCheetah = {
   Models: {},
   Collections: {},
   Views: {},
-  Routers: {},
+
   initialize: function() {
-    alert('Hello from Backbone!');
+    PollCheetah.polls = new PollCheetah.Collections.Polls();
+    PollCheetah.polls.fetch({
+      success: function() {
+        new PollCheetah.AppRouter();
+        Backbone.history.start();
+      }
+    });
   }
 };
 

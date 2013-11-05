@@ -1,5 +1,5 @@
 PollCheetah::Application.routes.draw do
   devise_for :users
 
-  root :to => "user#show"
+  root :to => "users#show"
 end
