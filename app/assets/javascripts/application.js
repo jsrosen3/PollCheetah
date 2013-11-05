@@ -15,6 +15,8 @@
 //= require underscore
 //= require backbone
 //= require poll_cheetah
+
+// NOTE: THE ABOVE BLANK LINE IS SO HEROKU DOESN'T FREAK OUT ABOUT EMPTY DIRECTORIES
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
