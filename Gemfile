@@ -29,11 +29,13 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'underscore'
 gem 'backbone-on-rails'
 gem 'pusher'
 gem 'devise'
 gem 'figaro'
 gem 'twilio-ruby'
+gem 'ejs'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
