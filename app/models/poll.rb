@@ -6,4 +6,8 @@ class Poll < ActiveRecord::Base
   belongs_to :user
   has_many :questions, :dependent => :destroy
 
+  def as_json(options)
+    super(:include => [:questions])
+  end
+
 end

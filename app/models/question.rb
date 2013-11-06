@@ -5,5 +5,9 @@ class Question < ActiveRecord::Base
 
   belongs_to :poll
   has_many :answers, :dependent => :destroy
+
+  def as_json(options)
+    super(:include => [:answers])
+  end
   
 end

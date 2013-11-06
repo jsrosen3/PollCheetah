@@ -1,5 +1,9 @@
 PollCheetah::Application.routes.draw do
   devise_for :users
 
-  root :to => "users#show"
+  resources :users, :only => [:show]
+
+  post "/users/guest" => "users#guest"
+
+  root :to => "root#root"
 end

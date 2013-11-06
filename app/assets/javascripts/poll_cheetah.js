@@ -5,12 +5,14 @@ window.PollCheetah = {
 
   initialize: function() {
     PollCheetah.polls = new PollCheetah.Collections.Polls();
-    PollCheetah.polls.fetch({
-      success: function() {
-        new PollCheetah.AppRouter();
-        Backbone.history.start();
-      }
-    });
+    new PollCheetah.AppRouter();
+    Backbone.history.start();
+
+    // PollCheetah.polls.fetch({
+    //   success: function() {
+        
+    //   }
+    // });
   }
 };
 
