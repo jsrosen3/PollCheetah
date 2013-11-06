@@ -7,7 +7,7 @@ PollCheetah.Models.Question = Backbone.Model.extend({
     }
 
     return this._questionAnswers;
-  }
+  },
 
   parse: function (serverAttributes, options) {
     this.answers().reset(serverAttributes.answers);
