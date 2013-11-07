@@ -19,6 +19,7 @@ group :development do
   gem 'debugger'
   gem 'better_errors'
   gem 'sqlite3'
+  gem "binding_of_caller"
 end
 
 group :production do

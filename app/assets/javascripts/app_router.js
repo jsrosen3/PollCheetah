@@ -5,7 +5,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     "users/:id"        : "userPolls",
     //"users/:id/edit"   : "userEdit",
     "polls/new"        : "pollNew",
-    "polls/:id/results": "pollResults",
+    "polls/:id": "pollResults",
     //"polls/:id/edit"   : "pollEdit"
   },
 
@@ -19,9 +19,19 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     this._swapView(userNewView);
   },
 
-  userPolls: function() {
-    var userPollsView = new PollCheetah.Views.UserPolls();
-    this._swapView(userPollsView);
+  userPolls: function(id) {
+    if (id != PollCheetah.currentUser.attributes.id) {
+      Backbone.history.navigate("/", { trigger: true });
+    } else {
+      var router = this; 
+      router._getPolls(function (polls) {
+        var userPollsView = new PollCheetah.Views.UserPolls({
+          model: PollCheetah.currentUser,
+          collection: polls
+        });
+        router._swapView(userPollsView);
+      });
+    }
   },
 
   // userEdit: function() {
@@ -30,12 +40,18 @@ PollCheetah.AppRouter = Backbone.Router.extend({
   // },
 
   pollNew: function() {
-    var pollNewView = new PollCheetah.Views.PollNew();
-    this._swapView(pollNewView);
+    if (PollCheetah.currentUser.attributes.id == undefined) {
+      Backbone.history.navigate("/", { trigger: true });
+    } else {
+      var pollNewView = new PollCheetah.Views.PollNew({
+        model: new PollCheetah.Models.Poll()
+      });
+      this._swapView(pollNewView);
+    }
   },
 
-  pollResults: function() {
-    var pollResultsView = new PollCheetah.Views.PollResultsView();
+  pollResults: function(id) {
+    var pollResultsView = new PollCheetah.Views.PollResults();
     this._swapView(pollResultsView);
   },
 
@@ -52,5 +68,16 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     this._prevView = newView;
     newView.render();
     $(".content").html(newView.$el);
+  },
+
+  _getPolls: function (callback) {
+    if (!PollCheetah.currentUserPolls) {  
+      PollCheetah.currentUserPolls = new PollApp.Collections.Polls();
+      PollCheetah.currentUserPolls.fetch({
+        success: callback
+      });
+    } else {
+      callback(PollCheetah.currentUserPolls);
+    }
   }
 });

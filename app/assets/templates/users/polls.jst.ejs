@@ -1,0 +1,15 @@
+<h1>Your polls</h1>
+
+<ul class="polls">
+  <% polls.forEach(function (poll, index) { %>
+    <li class="poll">
+      <a href="#/polls/<%= poll.id %>"><%= poll.title %></a> <!-- use .escape later -->
+    </li>
+  <% }); %>
+</ul>
+
+<% if (!polls.toString()) { %>
+  <p>None yet. Let's get started!</p>
+<% } %>
+
+<a href="#/polls/new">Create new poll</a>

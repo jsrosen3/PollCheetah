@@ -6,14 +6,21 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <script type="application/json" id="bootstrapped_user">
-    <%= { current_user: current_user }.to_json.html_safe %>
-  </script>
+  <div id="current-user" data-curr-user="<%= !!current_user %>">
+  </div>
+
+  <div id="user-stuff" data-user-content="<%= render template: 'polls/index.json.rabl' %>">
+  </div>
 
 </head>
 <body>
+  <%= render :partial => "root/user_data"%>
+  
 
-    <!-- rewrite this in JS in another file? then include as source? !-->
+
+
+
+  <!-- rewrite this in JS in another file? then include as source? !-->
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
@@ -34,6 +41,7 @@
     </form>
   <% end %>
 
+  <div class="header"></div>
   <div class="content"></div>
 
 </body>
