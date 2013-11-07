@@ -3,7 +3,7 @@ PollCheetah::Application.routes.draw do
 
   resources :users, :only => [:show]
 
-  post "/users/guest" => "users#guest"
-
+  post "/sms" => "votes#create"
+  
   root :to => "root#root"
 end

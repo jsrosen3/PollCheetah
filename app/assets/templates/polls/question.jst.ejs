@@ -1,0 +1,24 @@
+  <label for="question_<%= i %>_text">Question #<%= i + 1 %></label>
+  <input type="text" name="poll[question][<%= i %>][text]"
+                     id="question_<%= i %>_text">
+  <br>
+
+
+
+<li data-question-number="<%= i %>">
+  <ul class="answers" id="answers_for_question_<%= i %>">
+    <% var j = 0 %>
+    <% answers = question.get("answers") %>
+    <% if (answers) { %>
+      <% answers.forEach(function (answer) { %>
+        <%= JST["polls/answer"] ({answer: answer, j: j}) %>
+        <% j += 1 %>
+      <% }); %>
+    <% } %>
+  </ul>
+
+
+  <input type="button" value="Add Another Answer"
+                       id="addAnotherAnswer"
+                       data-question-number="<%= i %>">
+</li>

@@ -1,11 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.14'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,6 +16,8 @@ group :assets do
 end
 
 group :development do
+  gem 'debugger'
+  gem 'better_errors'
   gem 'sqlite3'
 end
 
@@ -36,6 +34,11 @@ gem 'devise'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'ejs'
+gem 'rabl'
+gem 'oj' # rabl wants this gem as well
+gem 'meta_request'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -48,10 +51,3 @@ gem 'ejs'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-gem 'debugger'
-gem 'better_errors'
-gem 'meta_request'
-gem 'omniauth'
-gem 'omniauth-facebook'

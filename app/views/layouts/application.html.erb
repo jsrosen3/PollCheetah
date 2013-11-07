@@ -5,10 +5,15 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <script type="application/json" id="bootstrapped_user">
+    <%= { current_user: current_user }.to_json.html_safe %>
+  </script>
+
 </head>
 <body>
 
-    <!-- header in javascript !-->
+    <!-- rewrite this in JS in another file? then include as source? !-->
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
@@ -29,7 +34,7 @@
     </form>
   <% end %>
 
-  <%= yield %>
+  <div class="content"></div>
 
 </body>
 </html>

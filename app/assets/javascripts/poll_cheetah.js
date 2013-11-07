@@ -6,7 +6,8 @@ window.PollCheetah = {
   initialize: function() {
     PollCheetah.polls = new PollCheetah.Collections.Polls();
     new PollCheetah.AppRouter();
-    //Backbone.history.start();  -- not ready to use Backbone yet
+    Backbone.history.start();
+    var currentUser = JSON.parse($('#bootstrapped_user').html());
 
     // PollCheetah.polls.fetch({
     //   success: function() {

@@ -1,0 +1,22 @@
+<form id= "newPoll">
+  <label for="title">Title</label>
+  <input type="text" name="poll[title]" id="title">
+  <br>
+
+  <ul id="questions">
+    <% var i = 0 %>
+    <% questions = poll.get("questions") %>
+    <% if (questions) { %>
+      <% questions.forEach(function (question) { %>
+        <%= JST["polls/question"] ({question: question, i: i}) %>
+        <% i += 1 %>
+      <% }); %>
+    <% } %>
+  </ul>
+
+  <input type="button" value="Add Another Question"
+                       id="addAnotherQuestion"
+                       data-question-number="<%= i %>">
+
+  <input type="button" value="Create Poll!">
+</form>

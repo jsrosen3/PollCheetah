@@ -1,0 +1,11 @@
+<li data-answer-number="<%= j %>">
+
+<p>
+  <input type="text"
+         class="answer"
+         name="poll[question][<%= i %>][answer][<%= j %>][text]"
+         id="question_<%= i %>_answer_<%= j %>_text">
+  <label for="question_<%= i %>_answer_<%= j %>_text">
+    Answer Choice #<%= j + 1 %>
+  </label>
+</p>

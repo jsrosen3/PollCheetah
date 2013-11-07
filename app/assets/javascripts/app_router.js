@@ -3,10 +3,10 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     ""                 : "index",
     "users/new"        : "userNew",
     "users/:id"        : "userPolls",
-    "users/:id/edit"   : "userEdit",
+    //"users/:id/edit"   : "userEdit",
     "polls/new"        : "pollNew",
     "polls/:id/results": "pollResults",
-    "polls/:id/edit"   : "pollEdit"
+    //"polls/:id/edit"   : "pollEdit"
   },
 
   index: function() {
@@ -24,10 +24,10 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     this._swapView(userPollsView);
   },
 
-  userEdit: function() {
-    var userEditView = new PollCheetah.Views.UserEdit();
-    this._swapView(userEditView);
-  },
+  // userEdit: function() {
+  //   var userEditView = new PollCheetah.Views.UserEdit();
+  //   this._swapView(userEditView);
+  // },
 
   pollNew: function() {
     var pollNewView = new PollCheetah.Views.PollNew();
@@ -39,10 +39,10 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     this._swapView(pollResultsView);
   },
 
-  pollEdit: function() {
-    var pollEditView = new PollCheetah.Views.PollEditView();
-    this._swapView(pollEditView);
-  },
+  // pollEdit: function() {
+  //   var pollEditView = new PollCheetah.Views.PollEditView();
+  //   this._swapView(pollEditView);
+  // },
 
   _swapView: function (newView) {
     if (this._prevView) {
@@ -51,6 +51,6 @@ PollCheetah.AppRouter = Backbone.Router.extend({
 
     this._prevView = newView;
     newView.render();
-    $("body").html(newView.$el);
+    $(".content").html(newView.$el);
   }
 });
