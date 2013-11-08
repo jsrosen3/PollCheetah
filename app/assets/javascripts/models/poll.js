@@ -23,7 +23,18 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     return json;
   },
 
-  validate: function() {
-    // maybe do this later? (server-side validation)
+  validate: function () {
+    var errors = [];
+    
+    if (!this.get("title") || this.get("title").length === 0) {
+      errors.push("Poll title can't be blank");
+    }
+
+    if (!this.get("questions")) {
+      errors.push("You must have at least one question")
+    }
+    // possibly add other errors
+    
+    return errors.length == 0 ? undefined : errors;
   }
 });

@@ -4,19 +4,19 @@
   <br>
 
   <ul id="questions">
-    <% var i = 0 %>
+    <% var count = 0 %>
     <% questions = poll.get("questions") %>
     <% if (questions) { %>
       <% questions.forEach(function (question) { %>
-        <%= JST["polls/question"] ({question: question, i: i}) %>
-        <% i += 1 %>
+        <%= JST["polls/question"] ({question: question, i: count+1}) %>
+        <% count += 1 %>
       <% }); %>
     <% } %>
   </ul>
 
-  <input type="button" value="Add Another Question"
+  <input type="button" value="Add A Question"
                        id="addAnotherQuestion"
-                       data-question-number="<%= i %>">
+                       data-question-number="0">
 
-  <input type="button" value="Create Poll!">
+  <input type="button" id="submitForm" value="Create Poll!">
 </form>

@@ -2,11 +2,9 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
   template: JST["polls/new"],
 
   events: {
-
-    "click addAnotherQuestion"
-    "click addAnotherAnswer"
-
-    "submit form": "submitForm"
+    "click #addAnotherQuestion": "addAnotherQuestion",
+    "click #addAnotherAnswer": "addAnotherAnswer",
+    "click #submitForm": "submitForm"
   },
 
   render: function() {
@@ -19,17 +17,54 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
   },
 
   addAnotherQuestion: function(event) {
-
-
+    var questionNumber = $(event.target).data("question-number");
+    $(event.target).data("question-number", questionNumber + 1);
+    var $newQuestion = JST["polls/question"]({
+      question: new PollCheetah.Models.Question(),
+      i: questionNumber
+    });
+    $("ul#questions").append($newQuestion)
   },
 
   addAnotherAnswer: function(event) {
-
-
+    var questionNumber = $(event.target).data("question-number");
+    var $listOfAnswers = $("#answers_for_question_" + questionNumber);
+    var $lastAnswer = $listOfAnswers.find("li").last();
+    var answerNumber = $lastAnswer.data("answer-number");
+    answerNumber != null ? answerNumber += 1 : answerNumber = 0;
+    var $newAnswer = JST["polls/answer"]({
+      answer: new PollCheetah.Models.Answer(),
+      i: questionNumber,
+      j: answerNumber
+    });
+    $listOfAnswers.append($newAnswer)
   },
 
   submitForm: function(event) {
     event.preventDefault();
 
+    var payload = $('#newPoll').serializeJSON();
+    console.log(payload);
+    var poll = new PollCheetah.Models.Poll(payload.poll, { parse: true });
+
+    // if (!poll.isValid()) {
+    //   poll.validationError.forEach(function(err) {
+    //     this.$("form").prepend(
+    //       "<div>" + err + "</div>"
+    //     );
+    //   });
+    //   return;
+    // } 
+
+    // poll.save({}, {
+    //   success: function() {
+    //     PollCheetah.polls.add(poll);
+    //     Backbone.history.navigate("/polls/" + poll.id, { trigger: true });
+    //   },
+
+    //   error: function(model, response) {
+
+    //   }
+    // });
   }
 });

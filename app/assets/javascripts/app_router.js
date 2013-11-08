@@ -20,7 +20,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
   },
 
   userPolls: function(id) {
-    if (id != PollCheetah.currentUser.attributes.id) {
+    if (!PollCheetah.currentUser || id != PollCheetah.currentUser.attributes.id) {
       Backbone.history.navigate("/", { trigger: true });
     } else {
       var router = this; 
@@ -40,7 +40,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
   // },
 
   pollNew: function() {
-    if (PollCheetah.currentUser.attributes.id == undefined) {
+    if (!PollCheetah.currentUser) {
       Backbone.history.navigate("/", { trigger: true });
     } else {
       var pollNewView = new PollCheetah.Views.PollNew({
@@ -51,8 +51,13 @@ PollCheetah.AppRouter = Backbone.Router.extend({
   },
 
   pollResults: function(id) {
-    var pollResultsView = new PollCheetah.Views.PollResults();
-    this._swapView(pollResultsView);
+    var that = this;
+    this._getPoll(id, function(poll) {
+      var pollResultsView = new PollCheetah.Views.PollResults({
+        model: poll
+      });
+      that._swapView(pollResultsView);
+    });
   },
 
   // pollEdit: function() {
@@ -68,6 +73,15 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     this._prevView = newView;
     newView.render();
     $(".content").html(newView.$el);
+  },
+
+  _getPoll: function(id, callback) {
+    poll = new PollCheetah.Models.Poll({
+      id: id
+    });
+    poll.fetch({
+      success: callback
+    });
   },
 
   _getPolls: function (callback) {

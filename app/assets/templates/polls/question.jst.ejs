@@ -6,18 +6,34 @@
 
 <li data-question-number="<%= i %>">
   <ul class="answers" id="answers_for_question_<%= i %>">
-    <% var j = 0 %>
-    <% answers = question.get("answers") %>
-    <% if (answers) { %>
-      <% answers.forEach(function (answer) { %>
-        <%= JST["polls/answer"] ({answer: answer, j: j}) %>
-        <% j += 1 %>
-      <% }); %>
-    <% } %>
   </ul>
 
 
-  <input type="button" value="Add Another Answer"
+  <input type="button" value="Add An Answer"
                        id="addAnotherAnswer"
                        data-question-number="<%= i %>">
 </li>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- I'll need the below stuff when I want to edit an existing poll, if 
+     I'm going to do that.
+
+  <% var j = 0 %>
+    <% answers = question.get("answers") %>
+    <% if (answers) { %>
+      <% answers.forEach(function (answer) { %>
+        <%= JST["polls/answer"] ({answer: answer, i: i, j: j}) %>
+        <% j += 1 %>
+      <% }); %>
+    <% } %>
+-->
