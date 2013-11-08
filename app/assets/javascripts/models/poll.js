@@ -24,17 +24,17 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
   },
 
   validate: function () {
-    var errors = [];
+    // var errors = [];
     
-    if (!this.get("title") || this.get("title").length === 0) {
-      errors.push("Poll title can't be blank");
-    }
+    // if (!this.get("title") || this.get("title").length === 0) {
+    //   errors.push("Poll title can't be blank");
+    // }
 
-    if (!this.get("questions")) {
-      errors.push("You must have at least one question")
-    }
-    // possibly add other errors
+    // if (!this.get("questions")) {
+    //   errors.push("You must have at least one question")
+    // }
+    // // possibly add other errors
     
-    return errors.length == 0 ? undefined : errors;
+    // return errors.length == 0 ? undefined : errors;
   }
 });

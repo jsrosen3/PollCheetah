@@ -7,7 +7,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   render: function() {
     var renderedContent = this.template({
-
+      poll: this.model
     });
 
     this.$el.html(renderedContent);

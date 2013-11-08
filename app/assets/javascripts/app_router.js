@@ -5,7 +5,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     "users/:id"        : "userPolls",
     //"users/:id/edit"   : "userEdit",
     "polls/new"        : "pollNew",
-    "polls/:id": "pollResults",
+    "polls/:id"        : "pollResults",
     //"polls/:id/edit"   : "pollEdit"
   },
 

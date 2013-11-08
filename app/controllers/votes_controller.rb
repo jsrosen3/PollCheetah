@@ -2,7 +2,7 @@ class VotesController < ApplicationController
   def create
     message = params[:Body]
     phone_number = params[:From]
-    answer = Answer.find_by_text_code(message.to_i)
+    answer = Answer.find(message.to_i - 111) # so answer ids aren't quite public
     if answer && !already_voted_on_this_question?(phone_number, answer.question)
       @vote = Vote.new(:answer_id => answer.id, :phone_number => phone_number)
       @vote.save

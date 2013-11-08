@@ -44,7 +44,6 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
     event.preventDefault();
 
     var payload = $('#newPoll').serializeJSON();
-    console.log(payload);
     var poll = new PollCheetah.Models.Poll(payload.poll, { parse: true });
 
     // if (!poll.isValid()) {
@@ -56,11 +55,17 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
     //   return;
     // } 
 
-    // poll.save({}, {
-    //   success: function() {
-    //     PollCheetah.polls.add(poll);
-    //     Backbone.history.navigate("/polls/" + poll.id, { trigger: true });
-    //   },
+    poll.save(null, {
+      success: function() {
+        PollCheetah.polls.add(poll);
+        Backbone.history.navigate("/polls/" + poll.id, { trigger: true });
+      },
+
+      error: function() {
+        alert("Error saving your poll :-(");
+      }
+    });
+    
 
     //   error: function(model, response) {
 

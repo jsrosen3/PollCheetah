@@ -18,8 +18,13 @@ window.PollCheetah = {
     //   this.currentUser = new PollCheetah.Models.User(content)
     //   console.log(this.currentUser)
     // }
-    new PollCheetah.AppRouter();
-    Backbone.history.start();
+    PollCheetah.polls = new PollCheetah.Collections.Polls();
+    PollCheetah.polls.fetch({
+      success: function () {
+        new PollCheetah.AppRouter()
+        Backbone.history.start();
+      }
+    });
   }
 };
 

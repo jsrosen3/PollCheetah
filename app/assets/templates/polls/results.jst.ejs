@@ -1,2 +1,24 @@
-<h1>Poll results page</h1>
+<h1><%= poll.title %></h1>
 
+<p>Text your vote to 201-345-POLL (201-345-7655).</p>
+
+<% poll._pollQuestions.models.forEach( function(question) { %>
+  <p><%= question.attributes.text %></p>
+    <table border="1">
+      <tr>
+        <th>Answer</th>
+        <th>Text code</th>
+        <th>Votes</th>
+      </tr>
+    <% question._questionAnswers.models.forEach( function(answer) { %>
+      <tr>
+        <td><%= answer.attributes.text %></td>
+        <td><%= answer.attributes.id + 111 %></td>
+        <td><%= answer.attributes.num_votes %></td>
+      <tr>
+    <% }); %>
+  <br>
+  <br>
+<% }); %>
+
+  
