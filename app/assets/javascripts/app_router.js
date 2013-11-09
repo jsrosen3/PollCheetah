@@ -9,6 +9,11 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     //"polls/:id/edit"   : "pollEdit"
   },
 
+  initialize: function($header) {
+    var header = new PollCheetah.Views.Header();
+    $header.$header.html(header.render().$el);
+  },
+
   index: function() {
     var indexView = new PollCheetah.Views.Index();
     this._swapView(indexView);
@@ -86,7 +91,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
 
   _getPolls: function (callback) {
     if (!PollCheetah.currentUserPolls) {  
-      PollCheetah.currentUserPolls = new PollApp.Collections.Polls();
+      PollCheetah.currentUserPolls = new PollCheetah.Collections.Polls();
       PollCheetah.currentUserPolls.fetch({
         success: callback
       });

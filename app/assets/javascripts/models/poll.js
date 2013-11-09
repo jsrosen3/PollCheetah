@@ -1,6 +1,10 @@
 PollCheetah.Models.Poll = Backbone.Model.extend({
   urlRoot: "/polls",
 
+  // initialize: function() {
+  //   this.refreshResults();
+  // },
+
   questions: function() {
     if (!this._pollQuestions) {
       this._pollQuestions = new PollCheetah.Collections.PollQuestions([], { poll: this });
@@ -22,6 +26,21 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     
     return json;
   },
+
+  refreshResults: function () {
+    var poll = this;
+    poll.channel = PollCheetah.pusher.subscribe(poll.id.toString());
+    var callback = function(data) {
+      new_results = poll.parse(JSON.parse(data.new_results));
+      poll.set(new_results);
+      poll.trigger('change');
+    }
+
+    poll.channel.bind('new_vote', callback)
+  },
+
+
+
 
   validate: function () {
     // var errors = [];

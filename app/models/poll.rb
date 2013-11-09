@@ -9,7 +9,7 @@ class Poll < ActiveRecord::Base
   accepts_nested_attributes_for :questions
 
   def as_json(options)
-    super(:include => [:questions => [:answers]])
+    super(:include => [:questions])
   end
 
 end

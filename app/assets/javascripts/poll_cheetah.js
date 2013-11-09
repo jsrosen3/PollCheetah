@@ -4,8 +4,9 @@ window.PollCheetah = {
   Views: {},
 
   initialize: function() {
-    var $newDiv = $('<div></div>').html($('#currentUser').text());
-    var currentUserData = JSON.parse($newDiv.text());
+    var $header = $("#header");
+    var $userInfo = $('<div></div>').html($('#currentUser').text());
+    var currentUserData = JSON.parse($userInfo.text());
     if (currentUserData) {
       this.currentUser = new PollCheetah.Models.User(currentUserData);
       this.currentUserPolls = $('#user-stuff').data('user-content');
@@ -18,10 +19,14 @@ window.PollCheetah = {
     //   this.currentUser = new PollCheetah.Models.User(content)
     //   console.log(this.currentUser)
     // }
+
     PollCheetah.polls = new PollCheetah.Collections.Polls();
+    PollCheetah.pusher = new Pusher('ca893aacc8006a231dc9');
     PollCheetah.polls.fetch({
       success: function () {
-        new PollCheetah.AppRouter()
+        new PollCheetah.AppRouter({
+          $header: $header
+        })
         Backbone.history.start();
       }
     });

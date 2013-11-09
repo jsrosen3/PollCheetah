@@ -20,6 +20,7 @@ PollCheetah.Models.User = Backbone.Model.extend({
       method: "DELETE",
       success: function() {
         PollCheetah.currentUser = new PollCheetah.Models.User();
+        Backbone.history.navigate('/')
       },
       error: function(err) {
 
