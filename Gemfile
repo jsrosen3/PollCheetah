@@ -16,10 +16,11 @@ group :assets do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'debugger'
   gem 'better_errors'
-  gem 'sqlite3'
   gem "binding_of_caller"
+  gem 'meta_request'
 end
 
 group :production do
@@ -31,15 +32,14 @@ gem 'jquery-rails'
 gem 'underscore'
 gem 'backbone-on-rails'
 gem 'pusher'
-gem 'devise'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'ejs'
 gem 'rabl'
 gem 'oj' # rabl wants this gem as well
-gem 'meta_request'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'bootstrap-sass'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

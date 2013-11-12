@@ -17,33 +17,8 @@
 <body>
   <%= render :partial => "root/user_data"%>
   
-
-
-
-
-  <!-- rewrite this in JS in another file? then include as source? !-->
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <% if user_signed_in? %>
-    <% user = current_user %>
-    <%= link_to "My account", user_url(user.id) %>
-    <%= link_to "Log out", destroy_user_session_url, method: :delete %>
-  <% else %>
-    <%= button_to "Sign up!", new_user_registration_url, method: :get %>
-    <%= button_to "Log in", new_user_session_url, method: :get %>
-    <% pass = SecureRandom.urlsafe_base64 %>
-    <form action="<%= user_registration_url %>" method="post">
-      <input type="hidden" name="user[email]" value='<%= "guest_#{Time.now.to_i}#{rand(99)}@example.com" %>'>
-      <input type="hidden" name="user[password]" value="<%= pass %>">
-      <input type="hidden" name="user[password_confirmation]" value="<%= pass %>">
-      <input type="submit" value="Log in as guest">
-    </form>
-  <% end %>
-
-  <div class="header"></div>
-  <div class="content"></div>
+  <div id="header"></div>
+  <div id="content"></div>
 
 </body>
 </html>

@@ -9,9 +9,17 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     //"polls/:id/edit"   : "pollEdit"
   },
 
-  initialize: function($header) {
-    var header = new PollCheetah.Views.Header();
-    $header.$header.html(header.render().$el);
+  initialize: function($header, $content) {
+    PollCheetah.router = this;
+    this.$content = $content;
+    this.$header = $header;
+    this.header = new PollCheetah.Views.Header();
+    this.$header.$header.html(this.header.render().$el);
+  },
+
+  reloadHeader: function() {
+    this.header = new PollCheetah.Views.Header();
+    this.$header.$header.html(this.header.render().$el);
   },
 
   index: function() {
@@ -77,7 +85,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
 
     this._prevView = newView;
     newView.render();
-    $(".content").html(newView.$el);
+    $("#content").html(newView.$el);
   },
 
   _getPoll: function(id, callback) {

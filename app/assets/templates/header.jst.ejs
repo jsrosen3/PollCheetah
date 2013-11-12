@@ -1,1 +1,17 @@
-<a class="myAccount" href="#/user/<%= user.id %>/polls">My polls</a>
+<% if (PollCheetah.currentUser.id) { %>
+  <div id="header-user">
+    <img src="assets/basic_logo.png" title="PollCheetah" />
+    <p>Welcome!</p>
+    <a class="links" id="myPolls" href="#/users/<%= PollCheetah.currentUser.id %>">My Polls</a> 
+    <a class="links" id="newPoll" href="#/polls/new">Create a Poll</a>
+    <input type="button" class="btn btn-danger" value="Log Out" id="logOut">
+  </div>
+<% } else { %>
+  <div id="header-no-user">
+    <img id="logo" src="/assets/images/basic_logo.png" width="100" height="50">
+    <input type="button" class="btn btn-primary" value="One-click guest login" id="logInAsGuest">
+    <input type="button" class="btn btn-default" value="Log in" id="logIn">
+    <input type="button" class="btn btn-warning" value="Sign up" id="signUp">
+  </div>
+<% } %>
+

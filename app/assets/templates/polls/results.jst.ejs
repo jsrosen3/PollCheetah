@@ -6,17 +6,19 @@
   <p><%= question.attributes.text %></p>
     <table border="1">
       <tr>
-        <th>Answer</th>
         <th>Text code</th>
+        <th>Answer</th>
         <th>Votes</th>
       </tr>
-    <% question._questionAnswers.models.forEach( function(answer) { %>
-      <tr>
-        <td><%= answer.attributes.text %></td>
-        <td><%= answer.attributes.id + 111 %></td>
-        <td><%= answer.attributes.num_votes %></td>
-      <tr>
-    <% }); %>
+      <% question._questionAnswers.models.forEach( function(answer) { %>
+        <tr>
+          <td><%= answer.attributes.id + 111 %></td>
+          <td><%= answer.attributes.text %></td>
+          <td><%= answer.attributes.num_votes %></td>
+        <tr>
+      <% }); %>
+    </table>
   <br>
   <br>
+  <div id="pie_graph_<%= question.id %>" class="pie_graph"></div>
 <% }); %>

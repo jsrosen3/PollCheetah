@@ -2,45 +2,55 @@ PollCheetah.Views.Header = Backbone.View.extend({
   template: JST['header'],
 
   events: {
-    "click .myAccount"    : "myAccount",
-    "click .logOut"       : "logOut",
+    "click #logOut"       : "logOut",
     "click .signUp"       : "signUp",
     "click .logIn"        : "logIn",
-    "click .logInAsGuest" : "logInAsGuest"
+    "click #logInAsGuest" : "logInAsGuest"
   },
 
-  myAccount: function(event) {
-    event.preventDefault();
-    Backbone.history.navigate('/users/' + PollCheetah.currentUser.id)
-  },
+  // myAccount: function(event) {
+  //   event.preventDefault();
+  //   Backbone.history.navigate('/users/' + PollCheetah.currentUser.id)
+  // },
 
   logOut: function(event) {
     event.preventDefault();
-    PollCheetah.currentUser.logOut();
+    PollCheetah.currentUser.logOutUser();
   },
 
   signUp: function(event) {
     event.preventDefault();
-    Backbone.history.navigate('/sign_up')
   },
 
   logIn: function(event) {
     event.preventDefault();
-    Backbone.history.navigate('/log_in')
   },
 
   logInAsGuest: function(event) {
     event.preventDefault();
 
+    PollCheetah.currentUser.logInAsGuest({
+      
+      success: function () {
+        console.log("success!")
+        //PollCheetah.router.refreshLayout.bind(PollCheetah.router)()
+        
+      },
+
+      error: function() {
+        console.log("fail")
+      }
+    });
   },
 
   render: function() {
     var renderedContent = this.template({
-      user: PollCheetah.currentUser
+
     });
 
     this.$el.html(renderedContent);
     return this;
   }
-
 });
+
+   

@@ -39,21 +39,15 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     poll.channel.bind('new_vote', callback)
   },
 
-
-
-
-  validate: function () {
-    // var errors = [];
-    
-    // if (!this.get("title") || this.get("title").length === 0) {
-    //   errors.push("Poll title can't be blank");
-    // }
-
-    // if (!this.get("questions")) {
-    //   errors.push("You must have at least one question")
-    // }
-    // // possibly add other errors
-    
-    // return errors.length == 0 ? undefined : errors;
-  }
+  // validation: {
+  //   title: {
+  //     required: true
+  //   },
+  //   'questions': {
+  //     length: 1
+  //   }
+  //   // 'question.answers': {
+  //   //   length: 1
+  //   // },
+  // }
 });

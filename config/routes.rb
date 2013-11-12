@@ -1,7 +1,8 @@
 PollCheetah::Application.routes.draw do
-  devise_for :users
+  resources :users, :only => [:create, :new, :show]
+  resource :session, :only => [:create, :destroy]
 
-  resources :users, :only => [:show]
+  post '/create_guest' => "users#create_guest"
 
   resources :polls, :only => [:create, :index, :show]
 
