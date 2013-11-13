@@ -11,7 +11,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.includes(:questions => [:answers => [:votes]]) # maybe current_user.polls instead?
+    @polls = Poll.includes(:questions => [:answers => [:votes]]).where(:user_id => current_user.id)
     render :index
   end
 

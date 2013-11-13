@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def create
+    p "PARAMS ARE"
+    p params
     @user = User.new(params[:user])
+    @user.user_type = "member"
+    p "USER IS"
+    p @user
 
     if @user.save
       self.current_user = @user

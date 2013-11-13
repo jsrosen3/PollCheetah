@@ -1,16 +1,13 @@
 PollCheetah.Models.User = Backbone.Model.extend({
   urlRoot: "/users",
 
-  logInUser: function() {
+  logInUser: function(credentials, successCallback, errorCallback) {
     $.ajax({
       url: "/session",
       method: "POST",
-      success: function(data) {
-        PollCheetah.currentUser = new PollCheetah.Models.User(data);
-      },
-      error: function(err) {
-
-      }
+      data: credentials,
+      success: successCallback,
+      error: errorCallback
     });
   },
 
@@ -20,11 +17,12 @@ PollCheetah.Models.User = Backbone.Model.extend({
       method: "POST",
       success: function (data) {
         PollCheetah.currentUser = new PollCheetah.Models.User(data)
+        PollCheetah.currentUserPolls = $('#user-stuff').data('user-content');
         PollCheetah.router.reloadHeader();
         Backbone.history.navigate('#/users/' + PollCheetah.currentUser.id)
       },
       error: function (err){
-        console.log("log in fail")
+
       }
     })
   },

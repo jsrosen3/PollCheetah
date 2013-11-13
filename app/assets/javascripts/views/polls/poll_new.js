@@ -58,6 +58,7 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
     poll.save(null, {
       success: function() {
         PollCheetah.polls.add(poll);
+        PollCheetah.currentUserPolls.push(poll.attributes);
         Backbone.history.navigate("/polls/" + poll.id, { trigger: true });
       },
 

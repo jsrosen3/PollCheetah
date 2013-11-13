@@ -14,15 +14,11 @@ window.PollCheetah = {
     }
     PollCheetah.polls = new PollCheetah.Collections.Polls();
     PollCheetah.pusher = new Pusher('ca893aacc8006a231dc9');
-    PollCheetah.polls.fetch({
-      success: function () {
-        new PollCheetah.AppRouter({
-          $header: $header,
-          $content: $content
-        })
-        Backbone.history.start();
-      }
-    });
+    PollCheetah.router = new PollCheetah.AppRouter({
+      $header: $header,
+      $content: $content
+    })
+    Backbone.history.start();
   }
 };
 

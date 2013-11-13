@@ -12,3 +12,12 @@
  *= require_tree .
  *= require custom.css.scss
  */
+
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+}

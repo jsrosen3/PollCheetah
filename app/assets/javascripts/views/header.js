@@ -3,8 +3,7 @@ PollCheetah.Views.Header = Backbone.View.extend({
 
   events: {
     "click #logOut"       : "logOut",
-    "click .signUp"       : "signUp",
-    "click .logIn"        : "logIn",
+    "click #logIn"        : "logIn",
     "click #logInAsGuest" : "logInAsGuest"
   },
 
@@ -18,29 +17,25 @@ PollCheetah.Views.Header = Backbone.View.extend({
     PollCheetah.currentUser.logOutUser();
   },
 
-  signUp: function(event) {
-    event.preventDefault();
-  },
-
   logIn: function(event) {
     event.preventDefault();
+    var credentials = $("#logMeIn").serializeJSON().user;
+    var successCallback = function(data) {
+      PollCheetah.currentUser = new PollCheetah.Models.User(data)
+      PollCheetah.currentUserPolls = $('#user-stuff').data('user-content');
+      PollCheetah.router.reloadHeader();
+      Backbone.history.navigate('#/users/' + PollCheetah.currentUser.id)
+    };
+    var errorCallback = function(err) {
+
+    };
+
+    PollCheetah.currentUser.logInUser(credentials, successCallback, errorCallback)
   },
 
   logInAsGuest: function(event) {
     event.preventDefault();
-
-    PollCheetah.currentUser.logInAsGuest({
-      
-      success: function () {
-        console.log("success!")
-        //PollCheetah.router.refreshLayout.bind(PollCheetah.router)()
-        
-      },
-
-      error: function() {
-        console.log("fail")
-      }
-    });
+    PollCheetah.currentUser.logInAsGuest();
   },
 
   render: function() {

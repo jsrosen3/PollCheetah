@@ -1,17 +1,55 @@
-<% if (PollCheetah.currentUser.id) { %>
-  <div id="header-user">
-    <img src="assets/basic_logo.png" title="PollCheetah" />
-    <p>Welcome!</p>
-    <a class="links" id="myPolls" href="#/users/<%= PollCheetah.currentUser.id %>">My Polls</a> 
-    <a class="links" id="newPoll" href="#/polls/new">Create a Poll</a>
-    <input type="button" class="btn btn-danger" value="Log Out" id="logOut">
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PollCheetah</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <% if (PollCheetah.currentUser.id) { %>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#/users/<%= PollCheetah.currentUser.id %>">
+              My polls
+            </a>
+          </li>
+          <li>
+            <a href="#polls/new">
+              Create new poll
+            </a>
+          </li>
+          <li>
+            <a id="logOut" href="logOut">
+              Log out
+            </a>
+          </li>
+        </ul>
+      <% } else { %>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#users/new">
+              Sign up
+            </a>
+          </li>
+          <li>
+            <a id="logInAsGuest" href="">
+              One-click guest login
+            </a>
+          </li>
+        </ul>
+        <form id="logMeIn" class="navbar-form navbar-right">
+          <div class="form-group">
+            <input type="text" name="user[email]" placeholder="Email" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="password" name="user[password]" placeholder="Password" class="form-control">
+          </div>
+          <button id="logIn" class="btn btn-success">Log in</button>
+        </form>
+      <% } %>
+    </div><!--/.navbar-collapse -->
   </div>
-<% } else { %>
-  <div id="header-no-user">
-    <img id="logo" src="/assets/images/basic_logo.png" width="100" height="50">
-    <input type="button" class="btn btn-primary" value="One-click guest login" id="logInAsGuest">
-    <input type="button" class="btn btn-default" value="Log in" id="logIn">
-    <input type="button" class="btn btn-warning" value="Sign up" id="signUp">
-  </div>
-<% } %>
-
+</div>

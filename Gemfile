@@ -40,9 +40,10 @@ gem 'oj' # rabl wants this gem as well
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bootstrap-sass'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

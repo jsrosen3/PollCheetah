@@ -6,13 +6,32 @@ PollCheetah.Views.UserPolls = Backbone.View.extend({
   },
 
   render: function() {
-    var renderedContent = this.template({
-      user: this.model,
-      polls: this.collection
-    });
+    var that = this;
 
-    this.$el.html(renderedContent);
-    return this;
+    var renderCallback = function() {
+      var renderedContent = that.template({
+        user: that.model,
+        polls: PollCheetah.currentUserPolls
+      });
+
+      that.$el.html(renderedContent);
+      return that;
+    }
+
+    this.refreshCurrentUserPolls(renderCallback);
+  },
+
+  refreshCurrentUserPolls: function(callback) {
+    $.ajax({
+      url: "/polls",
+      method: "GET",
+      success: function (data) {
+        PollCheetah.currentUserPolls = data
+        callback();
+      },
+      error: function (err) {
+
+      }
+    })
   }
-
 });

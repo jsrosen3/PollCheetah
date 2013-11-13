@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112174701) do
+ActiveRecord::Schema.define(:version => 20131112225421) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -41,11 +41,12 @@ ActiveRecord::Schema.define(:version => 20131112174701) do
   add_index "questions", ["poll_id"], :name => "index_questions_on_poll_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",           :default => "", :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string   "email",           :default => "",      :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "password_digest"
     t.string   "session_token"
+    t.string   "user_type",       :default => "guest"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

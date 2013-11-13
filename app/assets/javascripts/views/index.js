@@ -2,7 +2,7 @@ PollCheetah.Views.Index = Backbone.View.extend({
   template: JST["index"],
 
   events: {
-
+    "click #tryItOut": "tryItOut"
   },
 
   render: function() {
@@ -12,5 +12,9 @@ PollCheetah.Views.Index = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     return this;
+  },
+
+  tryItOut: function() {
+    PollCheetah.currentUser.logInAsGuest();
   }
 });
