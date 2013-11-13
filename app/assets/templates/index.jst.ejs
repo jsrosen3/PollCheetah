@@ -7,35 +7,41 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>PollCheetah Home Page</title>
   </head>
 
-  <body>
+  <body style="background-color:#000000;">
 
     <div class="jumbotron">
       <div class="container">
         <h1>Beautiful, Real-time Polling</h1>
-        <p>1. You create a poll.</p>
-        <p>2. Your audience texts in their votes.</p>
-        <p>3. PollCheetah displays the results in colorful charts.</p>
-        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <br>
+          <div class="row">
+            <div class="col-lg-3">
+              <img src="http://theparalegalsociety.files.wordpress.com/2011/08/person-typing.jpg" width="180px" height="120px">
+              <br>
+              <h2>Create a poll</h2>
+              <p>With our dead-simple form, you'll have your poll ready in seconds.</p>
+              <p><a id="tryItOut" class="btn btn-default btn-lg" href="#">Make your own poll</a></p>
+            </div>
+            <div class="col-lg-3">
+              <img src="http://www.norcorp.com/Portals/60349/images//Kyocera-cellphone.jpg" width="120px" height="120px">
+              <br>
+              <h2>Collect votes</h2>
+              <p>Your audience texts in their votes. We count them for you.</p>
+              <p><a id="tryItOut" class="btn btn-default btn-lg" href="#">Vote on a poll</a></p>
+            </div>
+            <div class="col-lg-3">
+              <div id="sample_pie_graph" class="pie_graph"></div>
+              <h2>View results</h2>
+              <p>No need to refresh - results update live, in full color.</p>
+              <p><a class="btn btn-default btn-lg" href="#">See poll results</a></p>
+            </div>
+          </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <h2>Create a poll in seconds</h2>
-          <p>With PollCheetah's dead-simple form, you'll have your poll ready as fast as you can type.</p>
-          <p><a id="tryItOut" class="btn btn-default" href="#">Try it out</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Lightning-quick results</h2>
-          <p>No need to refresh - results update automatically as your audience texts in their votes. See for yourself!</p>
-          <p><a class="btn btn-default" href="#">Vote on a random poll</a></p>
-       </div>
-      </div>
-
+   
       <hr>
 
       <footer>
