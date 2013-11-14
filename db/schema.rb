@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112225421) do
+ActiveRecord::Schema.define(:version => 20131114182015) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20131112225421) do
   add_index "users", ["session_token"], :name => "index_users_on_session_token"
 
   create_table "votes", :force => true do |t|
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.integer  "answer_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
