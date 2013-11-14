@@ -1,11 +1,11 @@
 <div class="text-center">
   <h1><%= poll.attributes.title %></h1>
 
-  <h3>Text your vote to 201-345-POLL (201-345-7655).</h3>
+  <h3>Text your vote to 201-345-POLL (201-345-7655)</h3>
 
   <% poll._pollQuestions.models.reverse().forEach( function(question) { %>
     <br>
-    <h4><%= question.attributes.text %></h4>
+    <h4><strong><%= question.attributes.text %></strong></h4>
     <br>
     <div id="pie_graph_<%= question.id %>" class="pie_graph"></div>
     <a href="#" id="newColors">New colors</a>
@@ -27,6 +27,6 @@
     <a href="#users/<%= user.id %>">My polls</a>
     <text>&nbsp; | &nbsp;</text>
   <% } %>
-  <a href="#polls/<%=Math.ceil(Math.random()*14) %>">See another poll</a>
+  <a href="#polls/<%=Math.ceil(Math.random()*19) %>">See another poll</a>
 </div>
 
