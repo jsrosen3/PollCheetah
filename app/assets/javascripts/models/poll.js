@@ -49,14 +49,20 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     } else {
       attrs.questions_attributes.forEach( function(question, index) {
         if (!question.text) {
-          validationError.push("Question #" + (index + 1) +  " must have text.");
+          if (validationError.indexOf("Each question must have text.") === -1) {
+            validationError.push("Each question must have text.");
+          }
         }
         if (!question.answers_attributes || question.answers_attributes.length < 2) {
-          validationError.push("Question #" + (index + 1) +  " must have at least two answers.");
+          if (validationError.indexOf("Each question must have at least two answers.") === -1) {
+            validationError.push("Each question must have at least two answers.");
+          }
         } else {
           question.answers_attributes.forEach( function(answer, answerIndex) {
             if (!answer.text) {
-              validationError.push("Answer #" + (answerIndex + 1) + " to Question #" + (index + 1) +  " must have text.");
+              if (validationError.indexOf("Each answer must have text.") === -1) {
+                validationError.push("Each answer must have text.");
+              }
             }
           });
         }

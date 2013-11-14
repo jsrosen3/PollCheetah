@@ -4,7 +4,9 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
   events: {
     "click #addAnotherQuestion": "addAnotherQuestion",
     "click #addAnotherAnswer": "addAnotherAnswer",
-    "click #submitForm": "submitForm"
+    "click #submitForm": "submitForm",
+    "click .removeQuestion": "removeQuestion",
+    "click .removeAnswer": "removeAnswer"
   },
 
   render: function() {
@@ -40,11 +42,36 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
     $listOfAnswers.append($newAnswer)
   },
 
+  removeQuestion: function(event) {
+    event.preventDefault();
+    var i = $(event.target).data("question-number");
+    var $questionView = $("#question" + i)
+    $questionView.addClass("hidden");
+    $questionView.append('<input type="hidden" name="poll[questions_attributes][' + i + '][_destroy]" value="true">')
+    $("#question" + i + "label").addClass("hidden");
+    $("#question_" + i + "_text").addClass("hidden");
+    $("#removeQuestion" + i).addClass("hidden");
+    $(".question" + i + "br").addClass("hidden");
+  },
+
+  removeAnswer: function(event) {
+    event.preventDefault();
+    var i = $(event.target).data("question-number");
+    var j = $(event.target).data("answer-number");
+    $("#question" + i + "answer" + j).addClass("hidden");
+    var $answer = $("#question_" + i + "_answer_" + j + "_text")
+    $answer.attr("name", 'poll[questions_attributes][' + i + '][answers_attributes][' + j + '][_destroy]')
+    $answer.attr("value", "true")
+  },
+
   submitForm: function(event) {
     event.preventDefault();
 
-    var payload = $('#newPoll').serializeJSON();
-    var poll = new PollCheetah.Models.Poll(payload.poll, { parse: true });
+    this.payload = $('#newPoll').serializeJSON();
+    this._filterRemovedQuestions();
+    this._filterRemovedAnswers();
+
+    var poll = new PollCheetah.Models.Poll(this.payload.poll, { parse: true });
 
     if (!poll.isValid()) {
       this.$("#errors").html("");
@@ -67,5 +94,28 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
         alert("Error saving your poll :-(");
       }
     });
+  },
+
+  _filterRemovedQuestions: function() {
+    this.payload.poll.questions_attributes = _.select(this.payload.poll.questions_attributes, function(question) {
+      return !question._destroy;
+    });
+  },
+
+  _filterRemovedAnswers: function() {
+    var that = this
+    that.payload.poll.questions_attributes.forEach( function(question, index) {
+      console.log("still alive")
+      that.payload.poll.questions_attributes[index].answers_attributes = _.select(that.payload.poll.questions_attributes[index].answers_attributes, function(answer) {
+        return !answer._destroy;
+      })
+    })
   }
 });
+
+
+
+
+
+
+

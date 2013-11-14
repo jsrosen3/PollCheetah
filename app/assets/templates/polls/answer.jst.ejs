@@ -1,12 +1,12 @@
-<br>
 <li data-answer-number="<%= j %>">
 
-<p>
-  <label for="question_<%= i %>_answer_<%= j %>_text">Answer Choice #<%= j + 1 %> &nbsp;</label>
+<p id="question<%= i %>answer<%= j %>">
+  <br>
+  <label for="question_<%= i %>_answer_<%= j %>_text">Answer Choice &nbsp;</label>
   <input type="text"
          class="answer form-control"
-         style="width:450px;"
+         style="width:450px;display:inline-block;"
          name="poll[questions_attributes][<%= i %>][answers_attributes][<%= j %>][text]"
          id="question_<%= i %>_answer_<%= j %>_text">
-    
+  <button data-question-number="<%= i %>" data-answer-number="<%= j %>" id="removeQuestion<%= i %>Answer<%= j %>" class="removeAnswer btn btn-danger btn-xs">Remove</button>  
 </p>

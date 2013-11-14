@@ -24,8 +24,8 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
     if (!user.isValid()) {
       that.$("#errors").html("");
       user.validationError.forEach(function(err) {
-        that.$("#errors").append(
-          "<div class='text-centered'>" + err + "</div>"
+        that.$("#errors").prepend(
+          '<p style="color:#FF0000;">' + err + "</p>"
         );
       });
 
@@ -43,9 +43,10 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
 
       error: function() {
         that.$("#errors").html("");
-        that.$("#errors").append(
-          "<div class='text-centered'>" + "Sorry, there is already an account with that email address." + "</div>"
+        that.$("#errors").prepend(
+          '<p style="color:#FF0000;">Sorry, there is already an account with that email address.</p>'
         );
+
         $('#signUp')[0].reset();
       }
     });

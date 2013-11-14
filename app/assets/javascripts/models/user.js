@@ -53,7 +53,7 @@ PollCheetah.Models.User = Backbone.Model.extend({
     if (!attrs.password) {
       validationError.push("Please enter a password.");
     } else if (attrs.password.length < 6) {
-      validationError.push("Your password must be at least 6 characters");
+      validationError.push("Your password must be at least 6 characters.");
     }
     if (validationError.length === 0) {return;} else {return validationError;}
   }

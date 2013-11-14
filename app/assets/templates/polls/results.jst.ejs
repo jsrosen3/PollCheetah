@@ -8,6 +8,9 @@
     <h4><%= question.attributes.text %></h4>
     <br>
     <div id="pie_graph_<%= question.id %>" class="pie_graph"></div>
+    <button id="newColors" class="btn btn-primary btn-xs">New colors</button>
+    <br>
+    <br>
     <table style="margin: 0px auto;">
       <% question._questionAnswers.models.forEach( function(answer) { %>
         <tr>
@@ -19,8 +22,6 @@
       <% }); %>
     </table>
   <% }); %>
-  <br>
-  <button id="newColors" class="btn btn-primary">New colors</button>
   <br>
   <% if (user.id) { %>
     <a href="#users/<%= user.id %>">My polls</a>

@@ -1,13 +1,14 @@
-  <br>  
-  <label for="question_<%= i %>_text">Question #<%= i + 1 %> &nbsp;</label>
+  <br class="question<%= i %>br">  
+  <label id="question<%= i %>label" for="question_<%= i %>_text">Question &nbsp;</label>
   <input type="text" name="poll[questions_attributes][<%= i %>][text]"
                      id="question_<%= i %>_text"
-                     style="width:450px;"
+                     style="width:450px;display:inline-block;"
                      class="form-control">
-  <br>
+  <button id="removeQuestion<%= i %>" class="removeQuestion btn btn-danger btn-xs" data-question-number="<%= i %>">Remove</button>
+  <br class="question<%= i %>br">
 
 
-<li data-question-number="<%= i %>">
+<li id="question<%= i %>" data-question-number="<%= i %>">
   <ul style="list-style:none;" class="answers" id="answers_for_question_<%= i %>">
   </ul>
 
@@ -15,5 +16,6 @@
   <input type="button" value="Add An Answer"
                        id="addAnotherAnswer"
                        data-question-number="<%= i %>"
-                       class="btn btn-danger">
+                       class="btn btn-info">
+
 </li>
