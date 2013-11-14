@@ -48,8 +48,8 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   addColorLabels: function() {
     var that = this;
-    that.model._pollQuestions.models.forEach( function(question) {
-      question._questionAnswers.models.forEach( function(answer) {
+    that.model._pollQuestions.models.reverse().forEach( function(question) {
+      question._questionAnswers.models.reverse().forEach( function(answer) {
         that.$("#answerLabel" + answer.attributes.id).css("background-color", answer.color);
       })
     })

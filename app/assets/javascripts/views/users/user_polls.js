@@ -11,7 +11,7 @@ PollCheetah.Views.UserPolls = Backbone.View.extend({
     var renderCallback = function() {
       var renderedContent = that.template({
         user: that.model,
-        polls: PollCheetah.currentUserPolls
+        polls: PollCheetah.currentUserPolls.reverse();
       });
 
       that.$el.html(renderedContent);
