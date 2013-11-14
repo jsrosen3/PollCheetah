@@ -12,7 +12,7 @@
     <br>
     <br>
     <table style="margin: 0px auto;">
-      <% question._questionAnswers.models.reverse().forEach( function(answer) { %>
+      <% question._questionAnswers.models.forEach( function(answer) { %>
         <tr>
           <td><div id="answerLabel<%= answer.attributes.id %>" style="width:20px;height:20px;-moz-border-radius:5px;border-radius:5px;"></div></td>
           <td style="text-align:left;"><h3 style="display:inline;">&nbsp;<%= answer.attributes.num_votes %></h3></td>
