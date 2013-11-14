@@ -8,7 +8,7 @@ PollCheetah.Models.User = Backbone.Model.extend({
       data: credentials,
       success: successCallback,
       error: errorCallback
-    });
+    })
   },
 
   logInAsGuest: function() {
@@ -40,13 +40,21 @@ PollCheetah.Models.User = Backbone.Model.extend({
 
       }
     });
-  }
+  },
 
-  // validation: {
-  //   email: {
-  //     required: true,
-  //     pattern: 'email',
-  //     msg: 'Please enter a valid email address.'
-  //   }
-  // }
+  validate: function(attrs, options) {
+    var validationError = []
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!attrs.email) {
+      validationError.push("Please enter your email address.");
+    } else if (!re.test(attrs.email)) {
+      validationError.push("Please enter a valid email address.");
+    }
+    if (!attrs.password) {
+      validationError.push("Please enter a password.");
+    } else if (attrs.password.length < 6) {
+      validationError.push("Your password must be at least 6 characters");
+    }
+    if (validationError.length === 0) {return;} else {return validationError;}
+  }
 });

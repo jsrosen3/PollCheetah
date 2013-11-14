@@ -2,7 +2,8 @@ PollCheetah.Views.Index = Backbone.View.extend({
   template: JST["index"],
 
   events: {
-    "click #tryItOut": "tryItOut"
+    "click #tryItOut": "tryItOut",
+    "click #newColors": "newColors"
   },
 
   render: function() {
@@ -37,5 +38,10 @@ PollCheetah.Views.Index = Backbone.View.extend({
     $div.html($pieGraph);
     var ctx = that.$("#pie").get(0).getContext("2d");
     var graph = new Chart(ctx).Pie(data,options);
+  },
+
+  newColors: function() {
+    event.preventDefault();
+    this.createSampleGraph();
   }
 });

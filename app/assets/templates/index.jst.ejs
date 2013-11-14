@@ -10,34 +10,44 @@
     <title>PollCheetah Home Page</title>
   </head>
 
-  <body style="background-color:#000000;">
+  <body>
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Beautiful, Real-time Polling</h1>
+        <h1>&nbsp; Beautiful, Real-time Polling</h1>
         <br>
-          <div class="row">
+          <div class="row text-center">
             <div class="col-lg-3">
               <img src="http://theparalegalsociety.files.wordpress.com/2011/08/person-typing.jpg" width="180px" height="120px">
               <br>
-              <h2>Create a poll</h2>
-              <p>With our dead-simple form, you'll have your poll ready in seconds.</p>
-              <p><a id="tryItOut" class="btn btn-default btn-lg" href="#">Make your own poll</a></p>
+              <h2 class="text-center">Create a poll</h2>
+              <p class="text-center">With our dead-simple form, you'll have your poll ready in seconds.</p>
             </div>
             <div class="col-lg-3">
               <img src="http://www.norcorp.com/Portals/60349/images//Kyocera-cellphone.jpg" width="120px" height="120px">
               <br>
-              <h2>Collect votes</h2>
-              <p>Your audience texts in their votes. We count them for you.</p>
-              <p><a id="tryItOut" class="btn btn-default btn-lg" href="#">Vote on a poll</a></p>
+              <h2 class="text-center">Collect votes</h2>
+              <p class="text-center">Your audience texts in their votes. We count them for you.</p>
             </div>
             <div class="col-lg-3">
               <div id="sample_pie_graph" class="pie_graph"></div>
-              <h2>View results</h2>
-              <p>No need to refresh - results update live, in full color.</p>
-              <p><a class="btn btn-default btn-lg" href="#">See poll results</a></p>
+              <h2 class="text-center">View results</h2>
+              <p class="text-center">No need to refresh! As votes come in, results update live, in <a href="#" id="newColors">full color</a>.</p>
             </div>
           </div>
+<!--         <div class="row text-center">
+          <div class="col-sm-5 col-sm-offset-2">
+            <h3><strong>Let's get started!</strong></h3>
+          </div>
+        </div> -->
+        <h6>&nbsp;</h6>
+        <div class="row text-center">
+          <div class="col-sm-5 col-sm-offset-2">
+            <a id="tryItOut" class="btn btn-danger btn-lg" href="#" data-inline="true">Make your own poll</a>
+            <span>&nbsp;</span>
+            <a class="btn btn-danger btn-lg" href="#" data-inline="true">Vote on a poll</a>
+          </div>
+        </div>
       </div>
     </div>
 

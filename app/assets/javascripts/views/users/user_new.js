@@ -19,15 +19,20 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
 
     var payload = $(".form-signin").serializeJSON();
     var user = new PollCheetah.Models.User(payload.user);
+    var that = this;
 
-    // if (!poll.isValid()) {
-    //   poll.validationError.forEach(function(err) {
-    //     this.$("form").prepend(
-    //       "<div>" + err + "</div>"
-    //     );
-    //   });
-    //   return;
-    // } 
+    if (!user.isValid()) {
+      that.$("#errors").html("");
+      user.validationError.forEach(function(err) {
+        that.$("#errors").append(
+          "<div class='text-centered'>" + err + "</div>"
+        );
+      });
+
+      $('#signUp')[0].reset();
+
+      return;
+    } 
 
     user.save(null, {
       success: function() {
@@ -37,11 +42,12 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
       },
 
       error: function() {
-        alert("Error signing you up :-(");
+        that.$("#errors").html("");
+        that.$("#errors").append(
+          "<div class='text-centered'>" + "Sorry, there is already an account with that email address." + "</div>"
+        );
+        $('#signUp')[0].reset();
       }
     });
-
-
   }
-
 });

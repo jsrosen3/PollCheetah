@@ -39,15 +39,33 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     poll.channel.bind('new_vote', callback)
   },
 
-  // validation: {
-  //   title: {
-  //     required: true
-  //   },
-  //   'questions': {
-  //     length: 1
-  //   }
-  //   // 'question.answers': {
-  //   //   length: 1
-  //   // },
-  // }
+  validate: function(attrs, options) {
+    var validationError = [];
+    if (!attrs.title) {
+      validationError.push("Please enter a title.")
+    }
+    if (!attrs.questions_attributes || attrs.questions_attributes.length < 1) {
+      validationError.push("You must have at least one question.")
+    } else {
+      attrs.questions_attributes.forEach( function(question, index) {
+        if (!question.text) {
+          validationError.push("Question #" + (index + 1) +  " must have text.");
+        }
+        if (!question.answers_attributes || question.answers_attributes.length < 2) {
+          validationError.push("Question #" + (index + 1) +  " must have at least two answers.");
+        } else {
+          question.answers_attributes.forEach( function(answer, answerIndex) {
+            if (!answer.text) {
+              validationError.push("Answer #" + (answerIndex + 1) + " to Question #" + (index + 1) +  " must have text.");
+            }
+          });
+        }
+      });
+    }
+    if (validationError.length === 0) {return;} else {return validationError;}
+  }
 });
+
+
+
+

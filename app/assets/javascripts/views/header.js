@@ -4,7 +4,9 @@ PollCheetah.Views.Header = Backbone.View.extend({
   events: {
     "click #logOut"       : "logOut",
     "click #logIn"        : "logIn",
-    "click #logInAsGuest" : "logInAsGuest"
+    "click #logInAsGuest" : "logInAsGuest",
+    "click #email"        : "turnOffRed",
+    "click #password"     : "turnOffRed"
   },
 
   // myAccount: function(event) {
@@ -27,7 +29,9 @@ PollCheetah.Views.Header = Backbone.View.extend({
       Backbone.history.navigate('#/users/' + PollCheetah.currentUser.id)
     };
     var errorCallback = function(err) {
-
+      $('#logMeIn')[0].reset();
+      $("#email").addClass('errorClass');
+      $("#password").addClass('errorClass');
     };
 
     PollCheetah.currentUser.logInUser(credentials, successCallback, errorCallback)
@@ -36,6 +40,11 @@ PollCheetah.Views.Header = Backbone.View.extend({
   logInAsGuest: function(event) {
     event.preventDefault();
     PollCheetah.currentUser.logInAsGuest();
+  },
+
+  turnOffRed: function(event) {
+    $("#email").removeClass('errorClass');
+    $("#password").removeClass('errorClass');
   },
 
   render: function() {

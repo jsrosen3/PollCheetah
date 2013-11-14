@@ -1,9 +1,13 @@
+<br>
+<h2>New poll</h2>
+<br>
 <form id= "newPoll">
-  <label for="title">Title</label>
-  <input type="text" name="poll[title]" id="title">
+  <div id="errors"></div>
+  <label for="title">Title &nbsp;</label>
+  <input type="text" name="poll[title]" id="title" class="form-control" style="width:300px;">
   <br>
 
-  <ul id="questions">
+  <ul id="questions" style="list-style:none;">
     <% var count = 0 %>
     <% questions = poll.get("questions") %>
     <% if (questions) { %>
@@ -13,10 +17,13 @@
       <% }); %>
     <% } %>
   </ul>
-
+  <br>
   <input type="button" value="Add A Question"
                        id="addAnotherQuestion"
-                       data-question-number="0">
+                       data-question-number="0"
+                       class="btn btn-warning">
 
-  <input type="button" id="submitForm" value="Create Poll!">
+  <br>
+  <br>
+  <input type="button" id="submitForm" class="btn btn-success btn-lg" value="Create Poll">
 </form>

@@ -1,39 +1,19 @@
-  <label for="question_<%= i %>_text">Question #<%= i + 1 %></label>
+  <br>  
+  <label for="question_<%= i %>_text">Question #<%= i + 1 %> &nbsp;</label>
   <input type="text" name="poll[questions_attributes][<%= i %>][text]"
-                     id="question_<%= i %>_text">
+                     id="question_<%= i %>_text"
+                     style="width:450px;"
+                     class="form-control">
   <br>
 
 
 <li data-question-number="<%= i %>">
-  <ul class="answers" id="answers_for_question_<%= i %>">
+  <ul style="list-style:none;" class="answers" id="answers_for_question_<%= i %>">
   </ul>
 
-
+  <br>
   <input type="button" value="Add An Answer"
                        id="addAnotherAnswer"
-                       data-question-number="<%= i %>">
+                       data-question-number="<%= i %>"
+                       class="btn btn-danger">
 </li>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- I'll need the below stuff when I want to edit an existing poll, if 
-     I'm going to do that.
-
-  <% var j = 0 %>
-    <% answers = question.get("answers") %>
-    <% if (answers) { %>
-      <% answers.forEach(function (answer) { %>
-        <%= JST["polls/answer"] ({answer: answer, i: i, j: j}) %>
-        <% j += 1 %>
-      <% }); %>
-    <% } %>
--->
