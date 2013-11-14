@@ -8,7 +8,7 @@
     <h4><%= question.attributes.text %></h4>
     <br>
     <div id="pie_graph_<%= question.id %>" class="pie_graph"></div>
-    <button id="newColors" class="btn btn-primary btn-xs">New colors</button>
+    <a href="#" id="newColors">New colors</a>
     <br>
     <br>
     <table style="margin: 0px auto;">
@@ -25,8 +25,8 @@
   <br>
   <% if (user.id) { %>
     <a href="#users/<%= user.id %>">My polls</a>
+    <text>&nbsp; | &nbsp;</text>
   <% } %>
-  <br>
-  <a href="#">See another poll</a>
+  <a href="#polls/<%=Math.ceil(Math.random()*14) %>">See another poll</a>
 </div>
 

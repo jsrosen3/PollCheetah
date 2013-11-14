@@ -105,7 +105,6 @@ PollCheetah.Views.PollNew = Backbone.View.extend({
   _filterRemovedAnswers: function() {
     var that = this
     that.payload.poll.questions_attributes.forEach( function(question, index) {
-      console.log("still alive")
       that.payload.poll.questions_attributes[index].answers_attributes = _.select(that.payload.poll.questions_attributes[index].answers_attributes, function(answer) {
         return !answer._destroy;
       })

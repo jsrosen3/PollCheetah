@@ -59,7 +59,13 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     event.preventDefault();
     this.createGraph();
     this.addColorLabels();
-  }
+  },
+
+  // randomPoll: function(event) {
+  //   event.preventDefault();
+  //   var randID = Math.ceil(Math.random() * 20);
+  //   Backbone.history.navigate("/polls/" + randID, { trigger: true });
+  // }
 });
 
 

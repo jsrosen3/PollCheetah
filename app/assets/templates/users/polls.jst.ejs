@@ -1,10 +1,11 @@
 <div class="text-center">
   <h1>Your polls</h1>
+  <br>
 
-  <ul style="list-style: none;" class="polls">
+  <ul style="list-style:none;margin-left:0;padding-left:0;" class="polls">
     <% polls.forEach(function (poll, index) { %>
       <li class="poll">
-        <a href="#/polls/<%= poll.id %>"><h3><%= poll.title %></h3></a>
+        <a href="#/polls/<%= poll.id %>"><h4><strong><%= poll.title %></strong></h4></a>
         <br>
       </li>
     <% }); %>
@@ -15,5 +16,5 @@
   <% } %>
   <br>
 
-  <a href="#/polls/new" class="btn btn-warning">Create new poll</a>
+  <a href="#/polls/new" class="btn btn-warning btn-lg">Create new poll</a>
 </div>

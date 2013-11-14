@@ -44,4 +44,10 @@ PollCheetah.Views.Index = Backbone.View.extend({
     event.preventDefault();
     this.createSampleGraph();
   }
+
+  // randomPoll: function(event) {
+  //   event.preventDefault();
+  //   var randID = 
+  //   Backbone.history.navigate(;, { trigger: true });
+  // }
 });
