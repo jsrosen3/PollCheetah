@@ -29,13 +29,25 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     var data = [];
     this.model._pollQuestions.models.forEach( function(question, index) {
       data[index] = []
-      question._questionAnswers.models.forEach( function(answer) {
-        var randColor = '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6)
+      var numAnswers = question._questionAnswers.models.length
+      colorArray = []
+      var startHue = Math.floor(Math.random()*360);
+      var stepSize = Math.floor(Math.random()*3)
+
+      for(var i = 0; i < numAnswers; i++) {
+        var step = parseInt(360 / (numAnswers + stepSize))
+        var hue = (startHue + i * step) % 360
+        var saturation = Math.floor(75 + Math.random()*25)
+        var lightness = Math.floor(30 + Math.random()*40)
+        colorArray.push("hsl(" + hue + "," + saturation + "%," + lightness + "%)")
+      }
+      colorArray = _.shuffle(colorArray)
+      question._questionAnswers.models.forEach( function(answer, answerIndex) {
         data[index].push({
           value: answer.attributes.num_votes,
-          color: randColor
+          color: colorArray[answerIndex]
         });
-        answer.color = randColor;
+        answer.color = colorArray[answerIndex];
       });
       var options = {animationEasing: "easeOutQuint"}
       var $pieGraph = $('<canvas id="pie' + question.id + '" width="250" height="250" style="width:250px;height:250px;"></canvas>');
