@@ -63,7 +63,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
     // draw the graph
     var options = {animationEasing: "easeOutQuint"}
-    var $pieGraph = $('<canvas id="pie' + question.id + '" width="250" height="250" style="width:250px;height:250px;"></canvas>');
+    var $pieGraph = $('<canvas id="pie' + question.id + '" width="230" height="230" style="width:230px;height:230px;"></canvas>');
     var $div = that.$("#pie_graph_" + question.id)
     $div.html($pieGraph);
     var ctx = that.$("#pie" + question.id).get(0).getContext("2d");

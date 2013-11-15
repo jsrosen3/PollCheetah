@@ -1,16 +1,16 @@
 <div class="text-center">
-  <h1><%= poll.attributes.title %></h1>
+  <h2><strong><%= poll.attributes.title %></strong></h2>
 
   <h3>Text your vote to 201-345-POLL (201-345-7655)</h3>
 
   <% poll._pollQuestions.models.reverse().forEach( function(question) { %>
     <br>
     <h4><strong><%= question.attributes.text %></strong></h4>
-    <br>
+    <h5></h5>
     <div id="pie_graph_<%= question.id %>" class="pie_graph"></div>
-    <a href="#" class="newColors" data-question="<%= question %>" data-id="<%= question.id %>">New colors</a>
+    <a href="#" class="newColors" data-id="<%= question.id %>">New colors</a>
     <br>
-    <br>
+    <h6></h6>
     <table style="margin: 0px auto;">
       <% question._questionAnswers.models.forEach( function(answer) { %>
         <tr>
@@ -30,5 +30,9 @@
     <a class="btn btn-success" href="#users/new">Sign up</a>
     <text>&nbsp; &nbsp;</text>
   <% } %>
-  <a class="btn btn-danger" href="#polls/<%=Math.ceil(Math.random()*19) %>">See another poll</a>
+  <% var num = Math.ceil(Math.random()*19) %>
+  <% while (num === poll.attributes.id) { %>
+    <% num = Math.ceil(Math.random()*19) %>
+  <% } %>
+  <a class="btn btn-danger" href="#polls/<%= num %>">See another poll</a>
 </div>
