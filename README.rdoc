@@ -1,4 +1,4 @@
-=== PollCheetah
+= PollCheetah
 
 Welcome to PollCheetah, the easiest and most beautiful way to poll your audience. Great for lecturers, teachers, or anyone who wants to poll their friends.
 
