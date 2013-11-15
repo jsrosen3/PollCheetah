@@ -5543,13 +5543,15 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
+  width: 100%;
+  height: 25%;
   padding: 20px;
   margin-bottom: 0px;
   font-size: 21px;
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: white;
   margin-left: auto;
   margin-right: auto;
 }
