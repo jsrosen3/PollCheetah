@@ -5,6 +5,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     var that = this;
     that.listenTo(that.model, 'change', that.render.bind(that));
     that.model.refreshResults();
+    that.colorArray = [];
   },
 
   events: {
@@ -24,30 +25,34 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     return this;
   },
 
-  createGraph: function() {
+  createGraph: function(forceNewColors) {
     var that = this;
     var data = [];
     this.model._pollQuestions.models.forEach( function(question, index) {
       data[index] = []
-      var numAnswers = question._questionAnswers.models.length
-      colorArray = []
-      var startHue = Math.floor(Math.random()*360);
-      var stepSize = Math.floor(Math.random()*3)
+      
+      if (!this.colorArray || this.colorArray.length === 0 || forceNewColors === true) {
+        var numAnswers = question._questionAnswers.models.length
+        this.colorArray = []
+        var startHue = Math.floor(Math.random()*360);
+        var stepSize = Math.floor(Math.random()*3)
 
-      for(var i = 0; i < numAnswers; i++) {
-        var step = parseInt(360 / (numAnswers + stepSize))
-        var hue = (startHue + i * step) % 360
-        var saturation = Math.floor(75 + Math.random()*25)
-        var lightness = Math.floor(30 + Math.random()*40)
-        colorArray.push("hsl(" + hue + "," + saturation + "%," + lightness + "%)")
+        for(var i = 0; i < numAnswers; i++) {
+          var step = parseInt(360 / (numAnswers + stepSize))
+          var hue = (startHue + i * step) % 360
+          var saturation = Math.floor(75 + Math.random()*25)
+          var lightness = Math.floor(30 + Math.random()*40)
+          this.colorArray.push("hsl(" + hue + "," + saturation + "%," + lightness + "%)")
+        }
+        this.colorArray = _.shuffle(this.colorArray)        
       }
-      colorArray = _.shuffle(colorArray)
+
       question._questionAnswers.models.forEach( function(answer, answerIndex) {
         data[index].push({
           value: answer.attributes.num_votes,
-          color: colorArray[answerIndex]
+          color: this.colorArray[answerIndex]
         });
-        answer.color = colorArray[answerIndex];
+        answer.color = this.colorArray[answerIndex];
       });
       var options = {animationEasing: "easeOutQuint"}
       var $pieGraph = $('<canvas id="pie' + question.id + '" width="250" height="250" style="width:250px;height:250px;"></canvas>');
@@ -69,7 +74,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   newColors: function(event) {
     event.preventDefault();
-    this.createGraph();
+    this.createGraph(true);
     this.addColorLabels();
   },
 
