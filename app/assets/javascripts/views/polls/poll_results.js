@@ -3,7 +3,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   initialize: function() {
     var that = this;
-    that.listenTo(that.model, 'change', that.render.bind(that));
+    that.listenTo(that.model, 'change', that.refreshGraph.bind(that));
     that.model.refreshResults();
     that.colorArrays = {};
   },
@@ -12,19 +12,14 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     "click .newColors" : "newColors"
   },
 
-  render: function(questionID) { // questionID is the ID of the question that just got voted on, if there was one.
+  render: function() {
     var renderedContent = this.template({
       poll: this.model,
       user: PollCheetah.currentUser
     });
 
     this.$el.html(renderedContent);
-
-    if (questionID) {
-      this.refreshGraph(questionID);
-    } else {
-      this.createGraphs();
-    }
+    this.createGraphs();
 
     return this;
   },
@@ -39,7 +34,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
   createGraph: function(question, forceNewColors) {
     var data = [];
     var that = this;
-    
+
     // create an array of colors, no two of which are too similar
     if (!this.colorArrays[question.id] || this.colorArrays[question.id].length === 0 || forceNewColors) {
       var numAnswers = question._questionAnswers.models.length
@@ -91,9 +86,16 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     this.addColorLabels(question);
   },
 
-  refreshGraph: function(questionID) {
+  refreshGraph: function(questionID) { // note that questionID is received from the trigger in the poll model
     question = _.filter(this.model._pollQuestions.models, function(question){ return question.id === questionID; })[0];
     this.createGraph(question, false);
+    this.refreshScores(question);
+  },
+
+  refreshScores: function(question) {
+    question._questionAnswers.models.forEach( function(answer) {
+      $("#" + answer.attributes.id).html('&nbsp;' + answer.attributes.num_votes);
+    });
   }
 });
 
