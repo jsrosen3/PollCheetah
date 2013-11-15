@@ -3,7 +3,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   initialize: function() {
     var that = this;
-    that.listenTo(that.model, 'change', that.render.bind(that));
+    that.listenTo(that.model, 'change', that.render.bind(that)); // this needs to receive the question_id from the trigger and pass it to render
     that.model.refreshResults();
     that.colorArrays = {};
   },
@@ -12,7 +12,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     "click .newColors" : "newColors"
   },
 
-  render: function() {
+  render: function(questionID) {
     var renderedContent = this.template({
       poll: this.model,
       user: PollCheetah.currentUser
@@ -20,14 +20,20 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
     this.$el.html(renderedContent);
 
-    this.createGraphs();
+    if (questionID) {
+      question = _.filter(this.model._pollQuestions.models, function(question){ return question.id === questionID; })[0];
+      this.createGraph(question, false) // when someone just voted, we don't want the colors to change
+    } else {
+      this.createGraphs();
+    }
+
     return this;
   },
 
   createGraphs: function() {
     var that = this;
     that.model._pollQuestions.models.forEach( function(question, index) {
-      that.createGraph(question, true);
+      that.createGraph(question, true); // when the page is loaded, all graphs must get new colors
       that.addColorLabels(question);
     });
   },

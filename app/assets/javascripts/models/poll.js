@@ -33,7 +33,7 @@ PollCheetah.Models.Poll = Backbone.Model.extend({
     var callback = function(data) {
       new_results = poll.parse(JSON.parse(data.new_results));
       poll.set(new_results);
-      poll.trigger('change');
+      poll.trigger('change', data.question_id);
     }
 
     poll.channel.bind('new_vote', callback)

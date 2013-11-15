@@ -3,7 +3,8 @@ class VotesController < ApplicationController
     message = params[:Body]
     phone_number = params[:From]
     answer = Answer.find_by_id(message.to_i - 111) # so answer ids aren't quite public
-    if answer && !already_voted_on_this_question?(phone_number, answer.question)
+    @question = answer.question
+    if answer && !already_voted_on_this_question?(phone_number, @question)
       @vote = Vote.new(:answer_id => answer.id, :phone_number => phone_number)
       @vote.save
       update_results_on_page(answer.question.poll)
@@ -37,6 +38,6 @@ class VotesController < ApplicationController
     @poll = poll #need this so that RABL understands what I want it to render
     new_results = Rabl.render(@poll, "show", :view_path => 'app/views/polls', :format => :json)
     Pusher.url = ENV['PUSHER_URL']
-    Pusher.trigger("#{poll.id}", 'new_vote', { :new_results => new_results })
+    Pusher.trigger("#{poll.id}", 'new_vote', { :new_results => new_results, :question_id => @question.id })
   end
 end
