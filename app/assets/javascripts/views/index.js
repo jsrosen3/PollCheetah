@@ -18,7 +18,12 @@ PollCheetah.Views.Index = Backbone.View.extend({
   },
 
   tryItOut: function() {
-    PollCheetah.currentUser.logInAsGuest();
+    event.preventDefault();
+    if (PollCheetah.currentUser.id) {
+      Backbone.history.navigate('#polls/new', { trigger: true });
+    } else {
+      PollCheetah.currentUser.logInAsGuest();
+    }
   },
 
   createSampleGraph: function() {

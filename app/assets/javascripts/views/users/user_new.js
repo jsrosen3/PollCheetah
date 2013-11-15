@@ -2,7 +2,8 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
   template: JST["users/new"],
 
   events: {
-    "click #submitForm": "submitForm"
+    "click #submitForm": "submitForm",
+    "click #logInAsGuest": "logInAsGuest"
   },
 
   render: function() {
@@ -12,6 +13,11 @@ PollCheetah.Views.UserNew = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     return this;
+  },
+
+  logInAsGuest: function(event) {
+    event.preventDefault();
+    PollCheetah.currentUser.logInAsGuest();
   },
 
   submitForm: function(event) {

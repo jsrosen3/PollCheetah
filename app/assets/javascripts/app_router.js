@@ -7,6 +7,7 @@ PollCheetah.AppRouter = Backbone.Router.extend({
     "polls/new"        : "pollNew",
     "polls/:id"        : "pollResults",
     //"polls/:id/edit"   : "pollEdit"
+    "*notFound"        : "index"
   },
 
   initialize: function($header, $content) {

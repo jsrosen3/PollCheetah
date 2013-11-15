@@ -24,9 +24,11 @@
   <% }); %>
   <br>
   <% if (user.id) { %>
-    <a href="#users/<%= user.id %>">My polls</a>
-    <text>&nbsp; | &nbsp;</text>
+    <a class="btn btn-success" href="#users/<%= user.id %>">My polls</a>
+    <text>&nbsp; &nbsp;</text>
+  <% } else { %>
+    <a class="btn btn-success" href="#users/new">Sign up</a>
+    <text>&nbsp; &nbsp;</text>
   <% } %>
-  <a href="#polls/<%=Math.ceil(Math.random()*19) %>">See another poll</a>
+  <a class="btn btn-danger" href="#polls/<%=Math.ceil(Math.random()*19) %>">See another poll</a>
 </div>
-
