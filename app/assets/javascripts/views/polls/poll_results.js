@@ -3,7 +3,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
 
   initialize: function() {
     var that = this;
-    that.listenTo(that.model, 'change', that.render.bind(that)); // this needs to receive the question_id from the trigger and pass it to render
+    that.listenTo(that.model, 'change', that.render.bind(that));
     that.model.refreshResults();
     that.colorArrays = {};
   },
@@ -12,7 +12,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     "click .newColors" : "newColors"
   },
 
-  render: function(questionID) {
+  render: function(questionID) { // questionID is the ID of the question that just got voted on, if there was one.
     var renderedContent = this.template({
       poll: this.model,
       user: PollCheetah.currentUser
@@ -21,8 +21,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     this.$el.html(renderedContent);
 
     if (questionID) {
-      question = _.filter(this.model._pollQuestions.models, function(question){ return question.id === questionID; })[0];
-      this.createGraph(question, false) // when someone just voted, we don't want the colors to change
+      this.refreshGraph(questionID);
     } else {
       this.createGraphs();
     }
@@ -34,7 +33,6 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     var that = this;
     that.model._pollQuestions.models.forEach( function(question, index) {
       that.createGraph(question, true); // when the page is loaded, all graphs must get new colors
-      that.addColorLabels(question);
     });
   },
 
@@ -75,6 +73,7 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     $div.html($pieGraph);
     var ctx = that.$("#pie" + question.id).get(0).getContext("2d");
     var graph = new Chart(ctx).Pie(data,options);
+    this.addColorLabels(question);
   },
 
   addColorLabels: function(question) {
@@ -90,6 +89,11 @@ PollCheetah.Views.PollResults = Backbone.View.extend({
     question = _.filter(this.model._pollQuestions.models, function(question){ return question.id === questionID; })[0];
     this.createGraph(question, true);
     this.addColorLabels(question);
+  },
+
+  refreshGraph: function(questionID) {
+    question = _.filter(this.model._pollQuestions.models, function(question){ return question.id === questionID; })[0];
+    this.createGraph(question, false);
   }
 });
 
