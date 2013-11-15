@@ -12,4 +12,6 @@ Once you've made your poll, PollCheetah generates a phone number to receive vote
 
 == Displaying results
 
-PollCheetah uses WebSockets to display results in real time. When a person texts in their vote, within a second or two the results will update with the new tally. Graphs of results are colorful and animated, and you can easily generate new colors with a single click.
+PollCheetah uses WebSockets to display results in real time. When a person texts in their vote, within a second or two the results will automatically update with the new vote included - no need to refresh the page.
+
+Graphs of poll results are colorful and animated, and you can easily generate new colors with a single click.
