@@ -41,6 +41,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'newrelic_rpm'
 
 # To use ActiveModel has_secure_password
 
