@@ -3,7 +3,7 @@
 
   <h3>Text your vote to 201-345-POLL (201-345-7655)</h3>
 
-  <% poll._pollQuestions.models.reverse().forEach( function(question) { %>
+  <% poll._pollQuestions.models.forEach( function(question) { %>
     <br>
     <h4><strong><%= question.attributes.text %></strong></h4>
     <h5></h5>
