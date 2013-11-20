@@ -1,6 +1,6 @@
 = PollCheetah
 
-Welcome to PollCheetah, the easiest and most beautiful way to poll your audience. Great for lecturers, teachers, or anyone who wants to poll their friends.
+Welcome to PollCheetah, the easiest and most beautiful way to poll your audience. Great for lecturers, teachers, or anyone who wants to conduct a real-time poll.
 
 == Creating a poll
 
@@ -8,7 +8,7 @@ PollCheetah's form is dead-simple. You'll have your poll created as fast as you 
 
 == Collecting votes
 
-Once you've made your poll, PollCheetah generates a phone number to receive votes and short codes for each answer choice. Your audience texts in the code corresponding to the answer they want to vote for. PollCheetah processes and counts the votes for you.
+Once you've made your poll, PollCheetah generates short codes for each answer choice and a phone number to receive votes. Your audience texts in the code corresponding to the answer they want to vote for. PollCheetah processes and counts the votes for you.
 
 == Displaying results
 
